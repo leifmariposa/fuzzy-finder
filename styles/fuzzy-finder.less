@@ -5,3 +5,46 @@
   color: @text-color-highlight;
   font-weight: bold;
 }
+
+.fuzzy-finder {
+    &.select-list ol.list-group {
+        max-height: 624px;
+        border-top: solid 1px @base-border-color;
+        li {
+            display: flex;
+            background-color: @tool-panel-background-color;
+            line-height: 1.0em !important;
+
+            &.selected {
+                background: @background-color-selected;
+                border-top: solid 1px white;
+                border-bottom: solid 1px white;
+            }
+
+            &:not(.selected) {
+                border-top: solid 1px transparent;
+                border-bottom: solid 1px transparent;
+            }
+        }
+
+        .icon {
+            margin: 0 0.5em;
+        }
+
+        .primary-line {
+            float: left;
+            width: 33%;
+            &.modified {
+                &::before {
+                    margin-right: 0.2em;
+                    font-weight: bold;
+                    color: #0098ff;
+                    content: '\26ac';
+                }
+            }
+        }
+
+        .secondary-line {
+        }
+    }
+}

@@ -5,6 +5,8 @@ module.exports =
     @active = true
 
     atom.commands.add 'atom-workspace',
+      'fuzzy-finder:toggle-switch-tab': =>
+        @createSwitchTabView().toggle()
       'fuzzy-finder:toggle-file-finder': =>
         @createProjectView().toggle()
       'fuzzy-finder:toggle-buffer-finder': =>
@@ -21,6 +23,9 @@ module.exports =
       pane.observeActiveItem (item) -> item?.lastOpened = Date.now()
 
   deactivate: ->
+    if @SwitchTabView?
+      @SwitchTabView.destroy()
+      @SwitchTabView = null
     if @projectView?
       @projectView.destroy()
       @projectView = null
@@ -46,6 +51,12 @@ module.exports =
       path = editor.getPath()
       paths[path] = editor.lastOpened if path?
     paths
+
+  createSwitchTabView: ->
+    unless @SwitchTabView?
+      SwitchTabView = require './switch-tab-view'
+      @SwitchTabView = new SwitchTabView()
+    @SwitchTabView
 
   createProjectView: ->
     @stopLoadPathsTask()

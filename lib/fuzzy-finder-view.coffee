@@ -98,12 +98,13 @@ class FuzzyFinderView extends SelectListView
 
 
       @li class: 'two-lines', =>
+        status = ''
         if (repo = repositoryForPath(filePath))?
           status = repo.getCachedPathStatus(filePath)
           if repo.isStatusNew(status)
-            @div class: 'status status-added icon icon-diff-added'
+            status = "status-added"
           else if repo.isStatusModified(status)
-            @div class: 'status status-modified icon icon-diff-modified'
+            status = "status-modified"
 
         typeClass = FileIcons.getService().iconClassForPath(filePath, 'fuzzy-finder') or []
         unless Array.isArray typeClass
@@ -112,8 +113,8 @@ class FuzzyFinderView extends SelectListView
         fileBasename = path.basename(filePath)
         baseOffset = projectRelativePath.length - fileBasename.length
 
-        @div class: "primary-line file icon #{typeClass.join(' ')}", 'data-name': fileBasename, 'data-path': projectRelativePath, -> highlighter(fileBasename, matches, baseOffset)
-        @div class: 'secondary-line path no-icon', -> highlighter(projectRelativePath, matches, 0)
+        @div class: "primary-line file icon #{typeClass.join(' ')} #{status}", 'data-name': fileBasename, 'data-path': projectRelativePath, -> highlighter(fileBasename, matches, baseOffset)
+        @div class: "secondary-line path no-icon #{status}", -> highlighter(projectRelativePath, matches, 0)
 
   openPath: (filePath, lineNumber, openOptions) ->
     if filePath
