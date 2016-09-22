@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "./lib/main",
   "description": "Open an editor to a file in the project with `cmd-t`.",
-  "repository": "https://github.com/atom/fuzzy-finder",
+  "repository": "https://github.com/leifmariposa/taz-fuzzy-finder",
   "license": "MIT",
   "dependencies": {
     "async": "0.2.6",
