@@ -31,9 +31,9 @@ class SwitchTabView extends SelectListView
 
   closeCurrent: ->
     item = @getSelectedItem()
-    pane = item.pane
-    tab = item.tab
-    pane.removeItem(tab)
+    pane = item?.pane
+    tab = item?.tab
+    pane?.removeItem(tab)
     @setItems()
 
   getEmptyMessage: (itemCount) ->
