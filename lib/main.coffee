@@ -7,6 +7,8 @@ module.exports =
     atom.commands.add 'atom-workspace',
       'fuzzy-finder:toggle-switch-tab': =>
         @createSwitchTabView().toggle()
+      'fuzzy-finder:close-current-switch-tab': =>
+        @createSwitchTabView().closeCurrent()
       'fuzzy-finder:toggle-file-finder': =>
         @createProjectView().toggle()
       'fuzzy-finder:toggle-buffer-finder': =>
